@@ -1,5 +1,5 @@
 type Puppy =  {
-  id: number;
+  id?: number;
   breed: string;
   name: string;
   birthdate: string;
