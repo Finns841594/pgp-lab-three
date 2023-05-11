@@ -1,10 +1,12 @@
 import { useState } from "react";
 
-interface Props {tagType: string, text: string, updateText: (text: string) => void}
+interface Props {tagType: keyof JSX.IntrinsicElements, text: string}
 
-export const ClickEditableText = ({tagType, text, updateText}:Props) => {
+export const ClickEditableText = ({tagType, text}:Props) => {
   const [editting, setEditting] = useState(false);
   const [theText, setTheText] = useState(text);
+
+  const Tag = tagType as keyof JSX.IntrinsicElements;
 
   const clickHandler = () => {
     if (editting) {
@@ -24,7 +26,7 @@ export const ClickEditableText = ({tagType, text, updateText}:Props) => {
         <input type="button" value="Confirm" onClick={clickHandler}></input>
       </div>
     ) : (
-      <h3 onClick={clickHandler}>{theText}</h3>
+      <Tag onClick={clickHandler}>{theText}</Tag>
     )}
     </>
   )

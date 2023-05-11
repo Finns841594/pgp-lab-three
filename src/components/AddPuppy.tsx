@@ -1,6 +1,5 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { addPuppy } from "./tools";
-import { Puppy } from "./types";
 import { PuppiesContext } from "../PuppiesContext";
 
 

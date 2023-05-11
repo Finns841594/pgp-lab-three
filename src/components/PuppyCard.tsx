@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Puppy } from "./types";
-import { fetchPuppyById, fetchPuppyPhotoByBreed } from "./tools";
+import { fetchPuppyPhotoByBreed } from "./tools";
+import { ClickEditableText } from "./ClickEditableText";
 
 interface PuppyCardProps {puppyInfo: Puppy}
 
@@ -11,7 +12,13 @@ export const PuppyCard = ({puppyInfo}: PuppyCardProps) => {
     fetchPuppyPhotoByBreed(puppyInfo.breed)
     .then((url) => setPuppyPhotoUrl(url))
     .catch((error) => console.log(error));
-  }, []);
+  },[]);
+
+  const PuppyDescribe = {
+    line1: "Hi! My name is " + puppyInfo.name + ". ",
+    line2: "I'm a " + puppyInfo.breed + ". ",
+    line3: "I was born on " + puppyInfo.birthdate + ". ",
+  }
 
   return (
     <div className="puppy-card">
@@ -25,9 +32,9 @@ export const PuppyCard = ({puppyInfo}: PuppyCardProps) => {
           )}
       </div>
       <div className="puppy-card_info-block">
-        <h3>Hi, I'm {puppyInfo.name}</h3>
-        <p>I'm a {puppyInfo.breed}</p>
-        <p>I was born on {puppyInfo.birthdate}</p>
+        <ClickEditableText text={PuppyDescribe.line1} tagType="h3" />
+        <ClickEditableText text={PuppyDescribe.line2} tagType="p" />
+        <ClickEditableText text={PuppyDescribe.line3} tagType="p" />
       </div>
     </div>
   );
