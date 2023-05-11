@@ -1,18 +1,34 @@
 import { useEffect, useState } from "react";
 import { Puppy } from "./types";
-import { fetchPuppyById } from "./tools";
+import { fetchPuppyById, fetchPuppyPhotoByBreed } from "./tools";
 
-export const PuppyCard = () => {
-  const [puppy, setPuppy] = useState({} as Puppy);
+interface PuppyCardProps {puppyInfo: Puppy}
+
+export const PuppyCard = ({puppyInfo}: PuppyCardProps) => {
+  const [puppyPhotoUrl, setPuppyPhotoUrl] = useState<string | null>(null);
 
   useEffect(() => {
-    fetchPuppyById(1).then((puppy) => setPuppy(puppy));
+    fetchPuppyPhotoByBreed(puppyInfo.breed)
+    .then((url) => setPuppyPhotoUrl(url))
+    .catch((error) => console.log(error));
   }, []);
 
   return (
     <div className="puppy-card">
-      <h2>Hi, I'm a puppy card</h2>
-      { puppy.name && <h3>My name is {puppy.name}</h3>}
+      <div className="puppy-card_image-block">
+        { puppyPhotoUrl ? (
+          <img src={puppyPhotoUrl} alt={puppyInfo.breed} className="image-block_image"/>
+          ) : (
+          <div className="puppy-card_image-block placeholder">
+            <h3>Photo Loading</h3>
+          </div>
+          )}
+      </div>
+      <div className="puppy-card_info-block">
+        <h3>Hi, I'm {puppyInfo.name}</h3>
+        <p>I'm a {puppyInfo.breed}</p>
+        <p>I was born on {puppyInfo.birthdate}</p>
+      </div>
     </div>
   );
 };
