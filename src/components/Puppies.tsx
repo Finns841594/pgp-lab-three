@@ -1,27 +1,22 @@
 import { PuppyCard } from "./PuppyCard"
-import { useEffect, useState } from "react";
+import { useContext } from "react";
 import { Puppy } from "./types";
-import { fetchAllPuppies, fetchPuppyById, fetchPuppyPhotoByBreed } from "./tools";
 import './Puppies.css';
 import { AddPuppy } from "./AddPuppy";
+import { PuppiesContext } from "../PuppiesContext";
 
 export const Puppies = () => {
-  const [puppies, setPuppy] = useState({} as Puppy[]);
-
-  useEffect(() => {
-    fetchAllPuppies() 
-    .then((newPuppies) => setPuppy(newPuppies))
-    .catch((error) => console.log(error));
-  }, []);
+  // const [puppies, setPuppies] = useState({} as Puppy[]);
+  const {puppies, setPuppies} = useContext(PuppiesContext);
 
   return (
     <div className="puppies">
       { puppies.length > 0 && (
       <>
-        <PuppyCard puppyInfo={puppies[0]} />
-        <PuppyCard puppyInfo={puppies[1]} />
-        <PuppyCard puppyInfo={puppies[2]} />
-        <AddPuppy />
+        {puppies.map((puppy) => (
+          <PuppyCard puppyInfo={puppy} key={puppy.id}/>
+        ))}
+        <AddPuppy  />
       </>
       )}
     </div>

@@ -1,9 +1,11 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { addPuppy } from "./tools";
 import { Puppy } from "./types";
+import { PuppiesContext } from "../PuppiesContext";
+
 
 export const AddPuppy = () => {
-  const [newPuppy, setNewPuppy] = useState({} as Puppy);
+  const {puppies, setPuppies} = useContext(PuppiesContext);
 
   const addPuppyHandler = () => {
     // Get the input fields
@@ -28,7 +30,7 @@ export const AddPuppy = () => {
       // Post request to the server
       addPuppy(newPuppy).then((response) => {
         console.log('Added to the server: ', response);
-        setNewPuppy(response);
+        setPuppies([...puppies, response]);
       });
     }
     return null;

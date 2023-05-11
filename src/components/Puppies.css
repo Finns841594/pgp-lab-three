@@ -2,10 +2,9 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  justify-content: center;
-  margin: 5vh auto;
-  width: 100%;
+  margin: 5vh 10vh;
   max-width: 1200px;
+  padding: 2.5rem;
 }
 .puppy-card {
   background-color: rgb(218, 218, 218);
