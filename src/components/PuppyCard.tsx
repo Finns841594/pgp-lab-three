@@ -15,9 +15,9 @@ export const PuppyCard = ({puppyInfo}: PuppyCardProps) => {
   },[]);
 
   const PuppyDescribe = {
-    line1: "Hi! My name is " + puppyInfo.name + ". ",
-    line2: "I'm a " + puppyInfo.breed + ". ",
-    line3: "I was born on " + puppyInfo.birthdate + ". ",
+    line1: "Hi! My name is ",
+    line2: "I'm a ",
+    line3: "I was born on ",
   }
 
   return (
@@ -32,9 +32,9 @@ export const PuppyCard = ({puppyInfo}: PuppyCardProps) => {
           )}
       </div>
       <div className="puppy-card_info-block">
-        <ClickEditableText text={PuppyDescribe.line1} tagType="h3" />
-        <ClickEditableText text={PuppyDescribe.line2} tagType="p" />
-        <ClickEditableText text={PuppyDescribe.line3} tagType="p" />
+        <ClickEditableText uneditableText={PuppyDescribe.line1} editableText={puppyInfo.name} tagType="h3" />
+        <ClickEditableText uneditableText={PuppyDescribe.line2} editableText={puppyInfo.breed} tagType="p" />
+        <ClickEditableText uneditableText={PuppyDescribe.line3} editableText={puppyInfo.birthdate} tagType="p" />
       </div>
     </div>
   );

@@ -6,7 +6,6 @@ import { AddPuppy } from "./AddPuppy";
 import { PuppiesContext } from "../PuppiesContext";
 
 export const Puppies = () => {
-  // const [puppies, setPuppies] = useState({} as Puppy[]);
   const {puppies, setPuppies} = useContext(PuppiesContext);
 
   return (

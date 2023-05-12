@@ -1,10 +1,10 @@
 import { useState } from "react";
 
-interface Props {tagType: keyof JSX.IntrinsicElements, text: string}
+interface Props {tagType: keyof JSX.IntrinsicElements, editableText: string, uneditableText: string}
 
-export const ClickEditableText = ({tagType, text}:Props) => {
+export const ClickEditableText = ({tagType, editableText, uneditableText}:Props) => {
   const [editting, setEditting] = useState(false);
-  const [theText, setTheText] = useState(text);
+  const [theText, setTheText] = useState(editableText);
 
   const Tag = tagType as keyof JSX.IntrinsicElements;
 
@@ -22,11 +22,11 @@ export const ClickEditableText = ({tagType, text}:Props) => {
     <>
     { editting ? (
       <div className="usercard_name_edit_area">
-        <input type="text" id="textContent" defaultValue={text}></input>
+        <Tag>{uneditableText}</Tag><input type="text" id="textContent" defaultValue={editableText}></input>
         <input type="button" value="Confirm" onClick={clickHandler}></input>
       </div>
     ) : (
-      <Tag onClick={clickHandler}>{theText}</Tag>
+      <Tag onClick={clickHandler}>{uneditableText} {theText}</Tag>
     )}
     </>
   )
