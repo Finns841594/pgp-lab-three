@@ -30,6 +30,7 @@ interface AddPuppy {
   name: string;
   birthdate: string;
 }
+
 export const addPuppy = async (puppy: AddPuppy): Promise<Puppy> => {
   const response = await fetch(`${backendDomain}/api/puppies`, {
     method: 'POST',
@@ -41,3 +42,22 @@ export const addPuppy = async (puppy: AddPuppy): Promise<Puppy> => {
   const newPuppy = await response.json();
   return newPuppy;
 };
+
+export const updatePuppyInfo = async (puppyInfo: Puppy): Promise<Puppy> => {
+  const response = await fetch(`${backendDomain}/api/puppies/${puppyInfo.id}`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(puppyInfo),
+    });
+    const updatedPuppy = await response.json();
+    console.log('😎 updatedPuppy: ', updatedPuppy);
+    return updatedPuppy;
+}
+
+export const deletePuppy = async (id: number): Promise<void> => {
+  await fetch(`${backendDomain}/api/puppies/${id}`, {
+    method: 'DELETE',
+  });
+}

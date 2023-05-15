@@ -1,12 +1,11 @@
 import { PuppyCard } from "./PuppyCard"
 import { useContext } from "react";
-import { Puppy } from "./types";
 import './Puppies.css';
 import { AddPuppy } from "./AddPuppy";
 import { PuppiesContext } from "../PuppiesContext";
 
 export const Puppies = () => {
-  const {puppies, setPuppies} = useContext(PuppiesContext);
+  const {puppies} = useContext(PuppiesContext);
 
   return (
     <div className="puppies">

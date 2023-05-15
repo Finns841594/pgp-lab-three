@@ -1,12 +1,14 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Puppy } from "./types";
-import { fetchPuppyPhotoByBreed } from "./tools";
+import { deletePuppy, fetchPuppyPhotoByBreed, updatePuppyInfo } from "./tools";
 import { ClickEditableText } from "./ClickEditableText";
+import { PuppiesContext } from "../PuppiesContext";
 
 interface PuppyCardProps {puppyInfo: Puppy}
 
 export const PuppyCard = ({puppyInfo}: PuppyCardProps) => {
   const [puppyPhotoUrl, setPuppyPhotoUrl] = useState<string | null>(null);
+  const {setPuppies} = useContext(PuppiesContext);
 
   useEffect(() => {
     fetchPuppyPhotoByBreed(puppyInfo.breed)
@@ -20,6 +22,17 @@ export const PuppyCard = ({puppyInfo}: PuppyCardProps) => {
     line3: "I was born on ",
   }
 
+  const deleteHandler = () => {
+    const confirmDelete = window.confirm(`Are you sure you want to delete ${puppyInfo.name}?`);
+    if (confirmDelete) {
+      deletePuppy(puppyInfo.id!)
+      .then(() => {
+        setPuppies((prevPuppies) => prevPuppies.filter((puppy) => puppy.id !== puppyInfo.id));
+      })
+    }
+  };
+
+
   return (
     <div className="puppy-card">
       <div className="puppy-card_image-block">
@@ -32,9 +45,12 @@ export const PuppyCard = ({puppyInfo}: PuppyCardProps) => {
           )}
       </div>
       <div className="puppy-card_info-block">
-        <ClickEditableText uneditableText={PuppyDescribe.line1} editableText={puppyInfo.name} tagType="h3" />
-        <ClickEditableText uneditableText={PuppyDescribe.line2} editableText={puppyInfo.breed} tagType="p" />
-        <ClickEditableText uneditableText={PuppyDescribe.line3} editableText={puppyInfo.birthdate} tagType="p" />
+        <ClickEditableText uneditableText={PuppyDescribe.line1} data={puppyInfo} editableProp='name' action={updatePuppyInfo} tagType="h3" />
+        <ClickEditableText uneditableText={PuppyDescribe.line2} data={puppyInfo} editableProp='breed' action={updatePuppyInfo} tagType="p" />
+        <ClickEditableText uneditableText={PuppyDescribe.line3} data={puppyInfo} editableProp='birthdate' action={updatePuppyInfo} tagType="p" />
+      </div>
+      <div className="puppy-card_button-block">
+        <button className="puppy-card-delete-button" onClick={deleteHandler}>Delete</button>
       </div>
     </div>
   );

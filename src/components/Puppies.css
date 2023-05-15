@@ -9,18 +9,26 @@
 .puppy-card {
   background-color: rgb(218, 218, 218);
   width: 300px;
-  height: 450px;
+  height: 300px;
   padding-top: 30px;
   margin: 1rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   border-radius: 20px;
+  transition: height 0.3s ease-in-out;
+  overflow-y: hidden;
+}
+
+.puppy-card:hover {
+  height:450px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
 .puppy-card_image-block {
   width: 240px;
   height: 240px;
+
 }
 
 .image-block_image {
@@ -40,4 +48,19 @@
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
+}
+
+.puppy-card-delete-button {
+  width:220px;
+  height: 30px;
+  border: 1px solid #d20f39;
+  border-radius: 10px;
+  background-color: transparent;
+  color:#d20f39
+}
+
+.puppy-card-delete-button:hover {
+  background-color: #d20f39;
+  color: white;
+  cursor: pointer;
 }
