@@ -7,7 +7,7 @@
   padding: 2.5rem;
 }
 .puppy-card {
-  background-color: rgb(218, 218, 218);
+  background-color: #ffffff;
   width: 300px;
   height: 300px;
   padding-top: 30px;
@@ -22,12 +22,12 @@
 
 .puppy-card:hover {
   height:450px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 10px #89dceb;
 }
 
 .puppy-card_image-block {
-  width: 240px;
   height: 240px;
+  width: 240px;
 
 }
 
@@ -43,13 +43,6 @@
   border-radius: 10px;
 }
 
-.puppy-card_info-block {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-around;
-}
-
 .puppy-card-delete-button {
   width:220px;
   height: 30px;
@@ -58,9 +51,42 @@
   background-color: transparent;
   color:#d20f39
 }
-
 .puppy-card-delete-button:hover {
   background-color: #d20f39;
+  color: white;
+  cursor: pointer;
+}
+
+.puppy-card_info-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.input-area {
+  width: 220px;
+  height: 20px;
+  border: none;
+  border-bottom: 1px solid #74c7ec;
+  margin-top: 3px;
+  margin-bottom: 3px;
+  background-color: transparent;
+  color:#74c7ec;
+  text-align: center;
+}
+
+.puppy-card-add-button {
+  width:220px;
+  height: 30px;
+  border: 1px solid #74c7ec;
+  border-radius: 10px;
+  background-color: transparent;
+  color:#74c7ec;
+  margin-top: 10px;
+}
+.puppy-card-add-button:hover {
+  background-color: #74c7ec;
   color: white;
   cursor: pointer;
 }

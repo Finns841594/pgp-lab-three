@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { addPuppy } from "./tools";
 import { PuppiesContext } from "../PuppiesContext";
+import PlaceHolderImg from '../static/donut_3d_shape.png';
 
 
 export const AddPuppy = () => {
@@ -39,6 +40,7 @@ export const AddPuppy = () => {
     <div className="puppy-card">
       <div className="puppy-card_image-block">
         <div className="puppy-card_image-block placeholder">
+          <img src={PlaceHolderImg} alt="placeholder" className="puppy-card_image-block placeholder-image"/>
         </div>
       </div>
       <div className="puppy-card_info-block">
@@ -46,7 +48,7 @@ export const AddPuppy = () => {
         <input type="text" id="newPuppyName" placeholder="Name..." className="input-area"/>
         <input type="text" id="newPuppyBreed" placeholder="Breed..." className="input-area"/>
         <input type="text" id="newPuppyBirth" placeholder="Born..." className="input-area"/>
-        <input type="submit" value="Add" className="input-area" onClick={addPuppyHandler}/>
+        <input type="submit" value="Add" className="input-area puppy-card-add-button" onClick={addPuppyHandler}/>
       </div>
     </div>
   );
