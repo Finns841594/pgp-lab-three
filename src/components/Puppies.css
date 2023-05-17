@@ -17,7 +17,7 @@
   align-items: center;
   border-radius: 20px;
   transition: height 0.3s ease-in-out;
-  overflow-y: hidden;
+  overflow: hidden;
 }
 
 .puppy-card:hover {
