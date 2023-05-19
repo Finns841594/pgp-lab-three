@@ -17,7 +17,7 @@ export const fetchAllPuppies = async (): Promise<Puppy[]> => {
 
 export const fetchPuppyPhotoByBreed = async (breed: string): Promise<string | null> => {
   try {
-    const response = await fetch(`https://api.unsplash.com/search/photos?query=${breed}+dog&client_id=${UnsplashAccessKey}`);
+    const response = await fetch(`https://api.unsplash.com/search/photos?query=${breed}+puppy&client_id=${UnsplashAccessKey}`);
     const data = await response.json();
     return data.results[0].urls.small;
   } catch (error) {
