@@ -32,8 +32,8 @@
 }
 
 .image-block_image {
-  width: 100%;
-  height: 100%;
+  width: 240px;
+  height: 240px;
   object-fit: cover;
   border-radius: 10px;
 }
